@@ -93,6 +93,10 @@ body {
   padding-bottom: 90px;
   background-color: white;
 
+  -moz-box-shadow:    1px 1px 3px 1px #CCC;
+  -webkit-box-shadow: 1px 1px 3px 1px #CCC;
+  box-shadow:         1px 1px 3px 1px #CCC;
+
   -webkit-transition: all 0.8s ease-out;
   -moz-transition: all 0.8s ease-out;
   -o-transition: all 0.8s ease-out;
@@ -127,12 +131,12 @@ body {
   top: 0;
   left: 0;
   background-color: black;
-  opacity: 0.4;
+  opacity: 0.1;
   z-index: 50;
-  -webkit-transition: all 0.8s ease-out;
-  -moz-transition: all 0.8s ease-out;
-  -o-transition: all 0.8s ease-out;
-  -ms-transition: all 0.8s ease-out;
+  -webkit-transition: all 0.6s ease-out;
+  -moz-transition: all 0.6s ease-out;
+  -o-transition: all 0.6s ease-out;
+  -ms-transition: all 0.6s ease-out;
 }
 
 .polaroid.lifted .image {
