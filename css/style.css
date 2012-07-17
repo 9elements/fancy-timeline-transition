@@ -72,11 +72,12 @@ body {
 #main{
   width: 860px;
   height: 100%;
+  margin: 0 auto;
 }
 
 .polaroid {
   position: relative;
-  display: none;
+  visibility: hidden;
   float: left;
   margin: 20px 0 0 20px;
   width: 400px;
@@ -88,8 +89,6 @@ body {
 .polaroid .image {
   position: absolute;
   z-index: 100;
-  width: 400px;
-  height: 310px;
   padding-bottom: 90px;
   background-color: white;
 
@@ -97,10 +96,19 @@ body {
   -webkit-box-shadow: 1px 1px 3px 1px #CCC;
   box-shadow:         1px 1px 3px 1px #CCC;
 
-  -webkit-transition: all 0.8s ease-out;
-  -moz-transition: all 0.8s ease-out;
-  -o-transition: all 0.8s ease-out;
-  -ms-transition: all 0.8s ease-out;
+  -webkit-transition: all 0.4s linear;
+  -moz-transition: all 0.4s linear;
+  -o-transition: all 0.4s linear;
+  -ms-transition: all 0.4s linear;
+}
+
+.polaroid .image .wrapper {
+  overflow: hidden;
+  width: 400px;
+  height: 310px;
+  background-repeat: norepeat;
+  background-position: center center;
+  background-size: cover;
 }
 
 .polaroid .image .avatar img {
@@ -117,7 +125,7 @@ body {
 
 .polaroid .image .caption {
   position: absolute;
-
+  font-size: 14px;
   width: 290px;
   height: 70px;
   left: 100px;
@@ -133,14 +141,14 @@ body {
   background-color: black;
   opacity: 0.1;
   z-index: 50;
-  -webkit-transition: all 0.6s ease-out;
-  -moz-transition: all 0.6s ease-out;
-  -o-transition: all 0.6s ease-out;
-  -ms-transition: all 0.6s ease-out;
+  -webkit-transition: all 0.4s linear;
+  -moz-transition: all 0.4s linear;
+  -o-transition: all 0.4s linear;
+  -ms-transition: all 0.4s linear;
 }
 
 .polaroid.lifted .image {
-  opacity: 0;
+  opacity: 0.5;
   -webkit-transform-style: preserve-3d;
   -moz-transform-style: preserve-3d;
   -o-transform-style: preserve-3d;
@@ -148,44 +156,45 @@ body {
 }
 
 .polaroid.lifted.rot1 .image {
-  -webkit-transform: rotateX(30deg) rotateY(30deg) rotateZ(-5deg) translate(-50px, 250px) scale(1.4);
-  -moz-transform: rotateX(30deg) rotateY(30deg) rotateZ(-5deg) translate(-50px, 250px) scale(1.4);
-  -o-transform: rotateX(30deg) rotateY(30deg) rotateZ(-5deg) translate(-50px, 250px) scale(1.4);
-  -ms-transform: rotateX(30deg) rotateY(30deg) rotateZ(-5deg) translate(-50px, 250px) scale(1.4);
+  -webkit-transform: rotateX(30deg) rotateY(30deg) rotateZ(-5deg) translate(-50px, 170px) scale(1.4);
+  -moz-transform: rotateX(30deg) rotateY(30deg) rotateZ(-5deg) translate(-50px, 170px) scale(1.4);
+  -o-transform: rotateX(30deg) rotateY(30deg) rotateZ(-5deg) translate(-50px, 170px) scale(1.4);
+  -ms-transform: rotateX(30deg) rotateY(30deg) rotateZ(-5deg) translate(-50px, 170px) scale(1.4);
 
 }
 .polaroid.lifted.rot2 .image {
-  -webkit-transform: rotateX(35deg) rotateY(20deg) rotateZ(-1deg) translate(-20px, 300px) scale(1.4);
-  -moz-transform: rotateX(35deg) rotateY(20deg) rotateZ(-1deg) translate(-20px, 300px) scale(1.4);
-  -o-transform: rotateX(35deg) rotateY(20deg) rotateZ(-1deg) translate(-20px, 300px) scale(1.4);
-  -ms-transform: rotateX(35deg) rotateY(20deg) rotateZ(-1deg) translate(-20px, 300px) scale(1.4);
+  -webkit-transform: rotateX(35deg) rotateY(20deg) rotateZ(-1deg) translate(-20px, 200px) scale(1.4);
+  -moz-transform: rotateX(35deg) rotateY(20deg) rotateZ(-1deg) translate(-20px, 200px) scale(1.4);
+  -o-transform: rotateX(35deg) rotateY(20deg) rotateZ(-1deg) translate(-20px, 200px) scale(1.4);
+  -ms-transform: rotateX(35deg) rotateY(20deg) rotateZ(-1deg) translate(-20px, 200px) scale(1.4);
 }
 .polaroid.lifted.rot3 .image {
-  -webkit-transform: rotateX(20deg) rotateY(25deg) rotateZ(-3deg) translate(10px, 200px) scale(1.4);
-  -moz-transform: rotateX(20deg) rotateY(25deg) rotateZ(-3deg) translate(10px, 200px) scale(1.4);
-  -o-transform: rotateX(20deg) rotateY(25deg) rotateZ(-3deg) translate(10px, 200px) scale(1.4);
-  -ms-transform: rotateX(20deg) rotateY(25deg) rotateZ(-3deg) translate(10px, 200px) scale(1.4);
+  -webkit-transform: rotateX(20deg) rotateY(25deg) rotateZ(-3deg) translate(10px, 150px) scale(1.4);
+  -moz-transform: rotateX(20deg) rotateY(25deg) rotateZ(-3deg) translate(10px, 150px) scale(1.4);
+  -o-transform: rotateX(20deg) rotateY(25deg) rotateZ(-3deg) translate(10px, 150px) scale(1.4);
+  -ms-transform: rotateX(20deg) rotateY(25deg) rotateZ(-3deg) translate(10px, 150px) scale(1.4);
 }
 .polaroid.lifted.rot4 .image {
-  -webkit-transform: rotateX(25deg) rotateY(20deg) rotateZ(-5deg) translate(50px, 280px) scale(1.4);
-  -moz-transform: rotateX(25deg) rotateY(20deg) rotateZ(-5deg) translate(50px, 280px) scale(1.4);
-  -o-transform: rotateX(25deg) rotateY(20deg) rotateZ(-5deg) translate(50px, 280px) scale(1.4);
-  -ms-transform: rotateX(25deg) rotateY(20deg) rotateZ(-5deg) translate(50px, 280px) scale(1.4);
+  -webkit-transform: rotateX(25deg) rotateY(20deg) rotateZ(-5deg) translate(50px, 190px) scale(1.4);
+  -moz-transform: rotateX(25deg) rotateY(20deg) rotateZ(-5deg) translate(50px, 190px) scale(1.4);
+  -o-transform: rotateX(25deg) rotateY(20deg) rotateZ(-5deg) translate(50px, 190px) scale(1.4);
+  -ms-transform: rotateX(25deg) rotateY(20deg) rotateZ(-5deg) translate(50px, 190px) scale(1.4);
 }
 .polaroid.lifted.rot5 .image {
-  -webkit-transform: rotateX(15deg) rotateY(25deg) rotateZ(-4deg) translate(0px, 260px) scale(1.4);
-  -moz-transform: rotateX(15deg) rotateY(25deg) rotateZ(-4deg) translate(0px, 260px) scale(1.4);
-  -o-transform: rotateX(15deg) rotateY(25deg) rotateZ(-4deg) translate(0px, 260px) scale(1.4);
-  -ms-transform: rotateX(15deg) rotateY(25deg) rotateZ(-4deg) translate(0px, 260px) scale(1.4);
+  -webkit-transform: rotateX(15deg) rotateY(25deg) rotateZ(-4deg) translate(0px, 200px) scale(1.4);
+  -moz-transform: rotateX(15deg) rotateY(25deg) rotateZ(-4deg) translate(0px, 200px) scale(1.4);
+  -o-transform: rotateX(15deg) rotateY(25deg) rotateZ(-4deg) translate(0px, 200px) scale(1.4);
+  -ms-transform: rotateX(15deg) rotateY(25deg) rotateZ(-4deg) translate(0px, 200px) scale(1.4);
 }
 
 .polaroid.lifted .shadow {
   opacity: 0;
   -webkit-transform-style: preserve-3d;
-  -webkit-transform: translate(0, 100px) scale(1.1);
+  -webkit-transform: translate(0, 60px) scale(1.1);
 }
 
 .reload-waypoint {
+  visibility: hidden;
   color: black;
   background-color: blue;
   width: 100px;
@@ -193,18 +202,12 @@ body {
   float: left;
 }
 
-#submenu {
-  background-color: #eee;
-
+.loading-indicator {
+  width: 50px;
+  margin: 0 auto;
+  padding-top: 50px;
+  text-align: center;
 }
-#submenu:hover {
-  background-color: #fc3;
-  -webkit-transform: rotate(360deg) scale(2);
-  -moz-transform: rotate(360deg) scale(2);
-  -o-transform: rotate(360deg) scale(2);
-  -ms-transform: rotate(360deg) scale(2);
-}
-
 
 
 

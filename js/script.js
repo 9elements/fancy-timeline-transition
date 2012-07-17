@@ -1,65 +1,85 @@
 (function() {
 
-  window.rand = function rand(limit) {
+  var cardQueue = {
+
+    _queue: new Array(),
+
+    workIt: function() {
+      var context = this;
+      setTimeout(function(){
+        var card = context._queue.shift();
+        if (card){
+          // destroy waypoint handler
+          $(card).waypoint('destroy');
+          // show card
+          card.css('visibility', 'visible');
+          setTimeout(function(){
+            card.removeClass('lifted');
+          }, 1);
+          context.workIt();
+        }
+      },200);
+    },
+
+    push: function(object) {
+      this._queue.push(object);
+      if (this._queue.length === 1){
+        this.workIt();
+      }
+    }
+  }
+
+  var rand = function rand(limit) {
     return Math.floor(Math.random() * limit) + 1;
   }
-  window.addWaypoints = function addWaypoints() {
-    $('.lifted .image img').load(function(){
-      $(this).closest('.polaroid').show().waypoint(function(event, direction) {
-        if (direction === 'down'){
-          $(this).removeClass('lifted');
-        }
-      },
-      {
-        offset: $(window).height() - 100,
-        triggerOnce: true
-      });
+
+  var page = 1;
+  var moarCardsPlz = function () {
+    $('div.loading-indicator').show();
+    $('#main').attr('data-currently-loading', 'yes');
+    $.getJSON('http://img.ly/images.json?sort=views&page='+page+'&callback=?', function(data){
+      console.log(data);
+      for (var index=0; index<data.length; index++){
+        var item = data[index];
+        var message = item.message ? item.message : '';
+        var newCard = $('<div class="polaroid lifted rot'+rand(5)+'"><div class="image"><div class="wrapper" style="background-image:url('+item.image+')"></div><div class="avatar"><img src="'+item.user_avatar_url+'"><div class="caption">'+message+'</div></div></div><div class="shadow"></div></div>');
+        $('#main').append(newCard);
+        newCard.find('img').eq(0).load(loadHandler);
+        newCard.waypoint(waypointHandler, waypointOptions);
+      }
+      page += 1;
+      $('div.loading-indicator').hide();
+      $('#main').attr('data-currently-loading', 'no');
     });
   }
 
+  var loadHandler = function(){
+    var polaroid = $(this).closest('.polaroid');
+    polaroid.attr('data-loaded', 'true');
+    if (polaroid.data('waypoint-reached')){
+      cardQueue.push(polaroid);
+    }
+  }
 
-  jQuery(function($) {
-    // hide spinner
-    // $('div.loading-more').hide();
+  var waypointHandler = function(event,direction){
+    var polaroid = $(this).closest('.polaroid');
+    polaroid.attr('data-waypoint-reached', 'true');
+    if (polaroid.data('loaded')){
+      cardQueue.push(polaroid);
+    }
+  }
 
-    // set current loading status
+  var waypointOptions = {
+    offset: '100%'
+  }
+
+  $(function(){
+    $('div.loading-indicator').hide();
     $('#main').attr('data-currently-loading', 'no');
-
-    // waypoint function
     $('.reload-waypoint').waypoint(function(event, direction) {
-      // endless list
-      var list = $('#main');
-
-      // if scroll direction is down and currently not loading
-      if (direction === 'down' && list.attr('data-currently-loading') === 'no') {
-
-        // show spinner
-        // $('div.loading_more').show();
-
-        // add six more polaroids
-        list.append('<div class="polaroid lifted rot'+rand(5)+'"><div class="image"><img src="http://www.placekitten.com/g/400/310"><div class="avatar"><img src="http://www.placekitten.com/g/70/70"><div class="caption">This is a nice little kitteh...</div></div></div><div class="shadow"></div></div>');
-        list.append('<div class="polaroid lifted rot'+rand(5)+'"><div class="image"><img src="http://www.placekitten.com/g/400/310"><div class="avatar"><img src="http://www.placekitten.com/g/70/70"><div class="caption">This is a nice little kitteh...</div></div></div><div class="shadow"></div></div>');
-        list.append('<div class="polaroid lifted rot'+rand(5)+'"><div class="image"><img src="http://www.placekitten.com/g/400/310"><div class="avatar"><img src="http://www.placekitten.com/g/70/70"><div class="caption">This is a nice little kitteh...</div></div></div><div class="shadow"></div></div>');
-        list.append('<div class="polaroid lifted rot'+rand(5)+'"><div class="image"><img src="http://www.placekitten.com/g/400/310"><div class="avatar"><img src="http://www.placekitten.com/g/70/70"><div class="caption">This is a nice little kitteh...</div></div></div><div class="shadow"></div></div>');
-        list.append('<div class="polaroid lifted rot'+rand(5)+'"><div class="image"><img src="http://www.placekitten.com/g/400/310"><div class="avatar"><img src="http://www.placekitten.com/g/70/70"><div class="caption">This is a nice little kitteh...</div></div></div><div class="shadow"></div></div>');
-        list.append('<div class="polaroid lifted rot'+rand(5)+'"><div class="image"><img src="http://www.placekitten.com/g/400/310"><div class="avatar"><img src="http://www.placekitten.com/g/70/70"><div class="caption">This is a nice little kitteh...</div></div></div><div class="shadow"></div></div>');
-
+      if (direction === 'down' && $('#main').attr('data-currently-loading') === 'no') {
+        moarCardsPlz();
         $('#main .reload-waypoint').appendTo('#main');
-
-        window.addWaypoints();
-
-        // $('.lifted .image img').load(function(){
-        //   $(this).closest('polaroid').waypoint(function(event, direction) {
-        //     $(this).removeClass('lifted').addClass('reached');
-        //     $.waypoints('refresh');
-        //   },
-        //   {
-        //     offset: 'bottom-in-view',
-        //     // offset: '100%'
-        //     triggerOnce: true
-        //   });
-        // });
-
         $.waypoints('refresh');
       }
     },
@@ -67,20 +87,6 @@
       offset: 'bottom-in-view'
     });
 
-    window.addWaypoints();
-    // // waypoint function
-    // $('.lifted').waypoint(function(event, direction) {
-    //   console.log('lifted');
-    //   console.log(this);
-    //   $(this).removeClass('lifted').addClass('reached');
-    //   $.waypoints('refresh');
-    //   // $(this).waypoint('destroy');
-    // },
-    // {
-    //   triggerOnce: true,
-    //   offset: 'bottom-in-view'
-    //   // offset: '100%'
-    // });
   });
 
 
