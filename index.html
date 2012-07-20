@@ -6,8 +6,14 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-  <title></title>
-  <meta name="description" content="">
+  <title>9elements Timeline Experiment</title>
+  <meta name="description" content="Google Plus iPad App timeline rebuild with CSS3 presenting the most popular pictures posted on photo sharing service img.ly.">
+  <meta name="keywords" content="img.ly imgly images 9elements fancy timeling css css3 experiment">
+  <meta property="og:title" content="CSS3 Timeline Experiment" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="http://timeline.9elements.com" />
+  <meta property="og:image" content="" />
+  <meta property="og:site_name" content="CSS3 Timeline Experiment" />
 
   <meta name="viewport" content="width=device-width">
   <link rel="stylesheet" href="css/style.css">
@@ -16,6 +22,32 @@
 </head>
 <body>
   <!--[if lt IE 7]><p class=chromeframe>Your browser is <em>ancient!</em> <a href="http://browsehappy.com/">Upgrade to a different browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to experience this site.</p><![endif]-->
+  <div id="fb-root"></div>
+  <script>(function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/en_US/all.js#xfbml=1";
+    fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));</script>
+  <script src="http://nine2011.9elements.com/lab_navigation?format=js"></script>
+
+  <a href="https://github.com/9elements/fancy-timeline-transition"><img style="position: absolute; top: 40px; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub"></a>
+  <header>
+    <div class="slogan">
+      <h1>Google Plus iPad App timeline rebuild with <span class="blue">CSS3</span></h1>
+      <h3>Presenting the most popular pictures posted on photo sharing service <b><a href="http://img.ly" target="_blank">img.ly</a></b></h3>
+    </div>
+    <div class="share">
+      <div class="facebook">
+        <div class="fb-like" data-send="false" data-layout="button_count" data-width="100" data-show-faces="false" data-href="http://timeline.9elements.com"></div>
+      </div>
+      <div class="twitter">
+        <a href="https://twitter.com/share" class="twitter-share-button" data-text="Check out this nice google+ like timeline!">Tweet</a>
+        <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+      </div>
+    </div>
+  </header>
   <div id="main" class="clearfix"></div>
   <div class="reload-waypoint"></div>
   <div class="loading-indicator"><img src="/img/loading.gif"></div>
@@ -27,7 +59,7 @@
   <script src="js/libs/jquery-waypoints.min.js"></script>
 
   <script>
-    var _gaq=[['_setAccount','UA-XXXXX-X'],['_trackPageview']];
+    var _gaq=[['_setAccount','UA-7994748-1'],['_trackPageview']];
     (function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
     g.src=('https:'==location.protocol?'//ssl':'//www')+'.google-analytics.com/ga.js';
     s.parentNode.insertBefore(g,s)}(document,'script'));

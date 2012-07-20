@@ -64,9 +64,61 @@ td { vertical-align: top; }
 
 .chromeframe { margin: 0.2em 0; background: #ccc; color: black; padding: 0.2em 0; }
 
+
 body {
-  margin: 20px;
   background-color: #EEE;
+  color: #424242;
+}
+
+header {
+  width: 100%;
+}
+
+.slogan {
+  width: 770px;
+  margin: 0 auto;
+  padding: 25px;
+  border-bottom: 1px solid #D1D1D1;
+  text-align: center;
+}
+
+.share {
+  padding: 25px 25px 5px 25px;
+  margin: 0 auto;
+  width: 820px;
+  text-align: center;
+}
+
+.facebook, .twitter {
+  display: inline;
+  padding: 0 10px;
+}
+
+h1 {
+  font-size: 24px;
+  font-weight: bold;
+  margin: 0;
+  padding-bottom: 10px;
+}
+
+h3 {
+  font-size: 20px;
+  font-weight: normal;
+  margin: 0;
+}
+
+h3 a,
+h3 a:hover,
+h3 a:visited,
+h3 a:focus,
+h3 a:active,
+h3 a:link {
+  color: #424242;
+  text-decoration: none;
+}
+
+.blue {
+  color: #60A7FD;
 }
 
 #main{
@@ -83,7 +135,6 @@ body {
   width: 400px;
   height: 400px;
   z-index: 0;
-
 }
 
 .polaroid .image {
@@ -92,44 +143,100 @@ body {
   padding-bottom: 90px;
   background-color: white;
 
-  -moz-box-shadow:    1px 1px 3px 1px #CCC;
-  -webkit-box-shadow: 1px 1px 3px 1px #CCC;
-  box-shadow:         1px 1px 3px 1px #CCC;
+  -moz-box-shadow:    0px 2px 7px -2px #999;
+  -webkit-box-shadow: 0px 2px 7px -2px #999;
+  box-shadow:         0px 2px 7px -2px #999;
 
-  -webkit-transition: all 0.4s linear;
-  -moz-transition: all 0.4s linear;
-  -o-transition: all 0.4s linear;
-  -ms-transition: all 0.4s linear;
+  -webkit-transition: all 350ms ease-out;
+     -moz-transition: all 350ms ease-out;
+      -ms-transition: all 350ms ease-out;
+       -o-transition: all 350ms ease-out;
+          transition: all 350ms ease-out;
+
+}
+
+.polaroid .image .inner-shadow {
+  position: absolute;
+  pointer-events: none;
+  width: 400px;
+  height: 400px;
+  top: 0;
+  left: 0;
+  -moz-box-shadow:    inset 0 0 1px #000000;
+  -webkit-box-shadow: inset 0 0 1px #000000;
+  box-shadow:         inset 0 0 1px #000000;
+  background-color: transparent;
+  background-image: url('/img/shadow.png');
+  background-repeat: no-repeat;
+  background-position: center 259px;
 }
 
 .polaroid .image .wrapper {
   overflow: hidden;
   width: 400px;
   height: 310px;
-  background-repeat: norepeat;
+  background-repeat: no-repeat;
   background-position: center center;
   background-size: cover;
 }
 
-.polaroid .image .avatar img {
+.polaroid .image .avatar {
   position: absolute;
-  width: 70px;
-  height: 70px;
-  left: 15px;
-  bottom: 50px;
+  width: 54px;
+  height: 54px;
+  left: 23px;
+  bottom: 60px;
+  border: 4px solid white;
   overflow: hidden;
-  -webkit-border-radius: 70px;
-  -moz-border-radius: 70px;
-  border-radius: 70px;
+  -webkit-border-radius: 60px;
+  -moz-border-radius: 60px;
+  border-radius: 60px;
+  background-repeat: norepeat;
+  background-position: center center;
+  background-size: cover;
+  -moz-box-shadow:    inset 0 0 10px #000000;
+  -webkit-box-shadow: inset 0 0 10px #000000;
+  box-shadow:         inset 0 0 10px #000000;
+}
+
+.polaroid .image .handle,
+.polaroid .image .handle:hover,
+.polaroid .image .handle:link,
+.polaroid .image .handle:visited,
+.polaroid .image .handle:active,
+.polaroid .image .handle:focus {
+  position: absolute;
+  font-size: 14px;
+  font-weight: bold;
+  width: 290px;
+  height: 15px;
+  left: 100px;
+  bottom: 69px;
+  color: #5477CA;
+  text-decoration: none;
+}
+
+.polaroid .image .time-ago {
+  position: absolute;
+  font-size: 12px;
+  color: #B8B8B8;
+  width: 70px;
+  height: 40px;
+  left: 20px;
+  bottom: 18px;
+  text-decoration: none;
+  text-align: center;
 }
 
 .polaroid .image .caption {
   position: absolute;
   font-size: 14px;
+  font-weight: bold;
   width: 290px;
-  height: 70px;
+  height: 55px;
   left: 100px;
-  bottom: 10px;
+  bottom: 7px;
+  overflow: hidden;
 }
 
 .polaroid .shadow {
@@ -141,10 +248,11 @@ body {
   background-color: black;
   opacity: 0.1;
   z-index: 50;
-  -webkit-transition: all 0.4s linear;
-  -moz-transition: all 0.4s linear;
-  -o-transition: all 0.4s linear;
-  -ms-transition: all 0.4s linear;
+  -webkit-transition: all 350ms ease-out;
+     -moz-transition: all 350ms ease-out;
+      -ms-transition: all 350ms ease-out;
+       -o-transition: all 350ms ease-out;
+          transition: all 350ms ease-out;
 }
 
 .polaroid.lifted .image {
@@ -153,44 +261,47 @@ body {
   -moz-transform-style: preserve-3d;
   -o-transform-style: preserve-3d;
   -ms-transform-style: preserve-3d;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
 }
 
 .polaroid.lifted.rot1 .image {
-  -webkit-transform: rotateX(30deg) rotateY(30deg) rotateZ(-5deg) translate(-50px, 170px) scale(1.4);
-  -moz-transform: rotateX(30deg) rotateY(30deg) rotateZ(-5deg) translate(-50px, 170px) scale(1.4);
-  -o-transform: rotateX(30deg) rotateY(30deg) rotateZ(-5deg) translate(-50px, 170px) scale(1.4);
-  -ms-transform: rotateX(30deg) rotateY(30deg) rotateZ(-5deg) translate(-50px, 170px) scale(1.4);
+  -webkit-transform: rotateX(-15deg) rotateY(-20deg) rotateZ(-5deg) translate(-10px, 120px) translateZ(140px) scale(1.15);
+  -moz-transform: rotateX(-15deg) rotateY(-20deg) rotateZ(-5deg) translate(-10px, 120px) translateZ(140px) scale(1.15);
+  -o-transform: rotateX(-15deg) rotateY(-20deg) rotateZ(-5deg) translate(-10px, 120px) translateZ(140px) scale(1.15);
+  -ms-transform: rotateX(-15deg) rotateY(-20deg) rotateZ(-5deg) translate(-10px, 120px) translateZ(140px) scale(1.15);
 
 }
 .polaroid.lifted.rot2 .image {
-  -webkit-transform: rotateX(35deg) rotateY(20deg) rotateZ(-1deg) translate(-20px, 200px) scale(1.4);
-  -moz-transform: rotateX(35deg) rotateY(20deg) rotateZ(-1deg) translate(-20px, 200px) scale(1.4);
-  -o-transform: rotateX(35deg) rotateY(20deg) rotateZ(-1deg) translate(-20px, 200px) scale(1.4);
-  -ms-transform: rotateX(35deg) rotateY(20deg) rotateZ(-1deg) translate(-20px, 200px) scale(1.4);
+  -webkit-transform: rotateX(-15deg) rotateY(-10deg) rotateZ(-1deg) translate(-10px, 150px) translateZ(140px) scale(1.15);
+  -moz-transform: rotateX(-15deg) rotateY(-10deg) rotateZ(-1deg) translate(-10px, 150px) translateZ(140px) scale(1.15);
+  -o-transform: rotateX(-15deg) rotateY(-10deg) rotateZ(-1deg) translate(-10px, 150px) translateZ(140px) scale(1.15);
+  -ms-transform: rotateX(-15deg) rotateY(-10deg) rotateZ(-1deg) translate(-10px, 150px) translateZ(140px) scale(1.15);
 }
 .polaroid.lifted.rot3 .image {
-  -webkit-transform: rotateX(20deg) rotateY(25deg) rotateZ(-3deg) translate(10px, 150px) scale(1.4);
-  -moz-transform: rotateX(20deg) rotateY(25deg) rotateZ(-3deg) translate(10px, 150px) scale(1.4);
-  -o-transform: rotateX(20deg) rotateY(25deg) rotateZ(-3deg) translate(10px, 150px) scale(1.4);
-  -ms-transform: rotateX(20deg) rotateY(25deg) rotateZ(-3deg) translate(10px, 150px) scale(1.4);
+  -webkit-transform: rotateX(-5deg) rotateY(-15deg) rotateZ(-3deg) translate(-10px, 100px) translateZ(140px) scale(1.15);
+  -moz-transform: rotateX(-5deg) rotateY(-15deg) rotateZ(-3deg) translate(-10px, 100px) translateZ(140px) scale(1.15);
+  -o-transform: rotateX(-5deg) rotateY(-15deg) rotateZ(-3deg) translate(-10px, 100px) translateZ(140px) scale(1.15);
+  -ms-transform: rotateX(-5deg) rotateY(-15deg) rotateZ(-3deg) translate(-10px, 100px) translateZ(140px) scale(1.15);
 }
 .polaroid.lifted.rot4 .image {
-  -webkit-transform: rotateX(25deg) rotateY(20deg) rotateZ(-5deg) translate(50px, 190px) scale(1.4);
-  -moz-transform: rotateX(25deg) rotateY(20deg) rotateZ(-5deg) translate(50px, 190px) scale(1.4);
-  -o-transform: rotateX(25deg) rotateY(20deg) rotateZ(-5deg) translate(50px, 190px) scale(1.4);
-  -ms-transform: rotateX(25deg) rotateY(20deg) rotateZ(-5deg) translate(50px, 190px) scale(1.4);
+  -webkit-transform: rotateX(-15deg) rotateY(-10deg) rotateZ(-5deg) translate(-10px, 140px) translateZ(140px) scale(1.15);
+  -moz-transform: rotateX(-15deg) rotateY(-10deg) rotateZ(-5deg) translate(-10px, 140px) translateZ(140px) scale(1.15);
+  -o-transform: rotateX(-15deg) rotateY(-10deg) rotateZ(-5deg) translate(-10px, 140px) translateZ(140px) scale(1.15);
+  -ms-transform: rotateX(-15deg) rotateY(-10deg) rotateZ(-5deg) translate(-10px, 140px) translateZ(140px) scale(1.15);
 }
 .polaroid.lifted.rot5 .image {
-  -webkit-transform: rotateX(15deg) rotateY(25deg) rotateZ(-4deg) translate(0px, 200px) scale(1.4);
-  -moz-transform: rotateX(15deg) rotateY(25deg) rotateZ(-4deg) translate(0px, 200px) scale(1.4);
-  -o-transform: rotateX(15deg) rotateY(25deg) rotateZ(-4deg) translate(0px, 200px) scale(1.4);
-  -ms-transform: rotateX(15deg) rotateY(25deg) rotateZ(-4deg) translate(0px, 200px) scale(1.4);
+  -webkit-transform: rotateX(-10deg) rotateY(-15deg) rotateZ(-4deg) translate(-10px, 150px) translateZ(140px) scale(1.15);
+  -moz-transform: rotateX(-10deg) rotateY(-15deg) rotateZ(-4deg) translate(-10px, 150px) translateZ(140px) scale(1.15);
+  -o-transform: rotateX(-10deg) rotateY(-15deg) rotateZ(-4deg) translate(-10px, 150px) translateZ(140px) scale(1.15);
+  -ms-transform: rotateX(-10deg) rotateY(-15deg) rotateZ(-4deg) translate(-10px, 150px) translateZ(140px) scale(1.15);
 }
 
 .polaroid.lifted .shadow {
   opacity: 0;
   -webkit-transform-style: preserve-3d;
-  -webkit-transform: translate(0, 60px) scale(1.1);
+  -webkit-transform: translate(0, 100px) scale(1.1);
 }
 
 .reload-waypoint {
@@ -205,7 +316,7 @@ body {
 .loading-indicator {
   width: 50px;
   margin: 0 auto;
-  padding-top: 50px;
+  padding: 50px 0;
   text-align: center;
 }
 

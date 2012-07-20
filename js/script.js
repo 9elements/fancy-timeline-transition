@@ -9,9 +9,7 @@
       setTimeout(function(){
         var card = context._queue.shift();
         if (card){
-          // destroy waypoint handler
           $(card).waypoint('destroy');
-          // show card
           card.css('visibility', 'visible');
           setTimeout(function(){
             card.removeClass('lifted');
@@ -38,13 +36,18 @@
     $('div.loading-indicator').show();
     $('#main').attr('data-currently-loading', 'yes');
     $.getJSON('http://img.ly/images.json?sort=views&page='+page+'&callback=?', function(data){
-      console.log(data);
       for (var index=0; index<data.length; index++){
         var item = data[index];
         var message = item.message ? item.message : '';
-        var newCard = $('<div class="polaroid lifted rot'+rand(5)+'"><div class="image"><div class="wrapper" style="background-image:url('+item.image+')"></div><div class="avatar"><img src="'+item.user_avatar_url+'"><div class="caption">'+message+'</div></div></div><div class="shadow"></div></div>');
+        // since all images are displayed as background image
+        // we need to create an temporary image object
+        // which triggers the load handler
+        var image = new Image;
+        var newCard = $('<div class="polaroid lifted rot'+rand(5)+'"><div class="image"><div class="inner-shadow"></div><a href="'+item.full_url+'" target="_blank"><div class="wrapper" style="background-image:url('+item.image+')"></div></a><a href="http://img.ly/images/'+item.user.username+'" target="_blank"><div class="avatar" style="background-image:url('+item.user.profile_image+')"></div></a><div class="time-ago">tweeted<br>'+item.time_ago+' ago</div><a class="handle" href="http://img.ly/images/'+item.user.username+'" target="_blank">@'+item.user.username+'</a><div class="caption">'+message+'</div></div><div class="shadow"></div></div>');
+        $(image).load(loadHandler);
+        $(image).data({card: newCard});
+        image.src = item.image;
         $('#main').append(newCard);
-        newCard.find('img').eq(0).load(loadHandler);
         newCard.waypoint(waypointHandler, waypointOptions);
       }
       page += 1;
@@ -54,7 +57,7 @@
   }
 
   var loadHandler = function(){
-    var polaroid = $(this).closest('.polaroid');
+    var polaroid = $(this).data('card');
     polaroid.attr('data-loaded', 'true');
     if (polaroid.data('waypoint-reached')){
       cardQueue.push(polaroid);
@@ -77,7 +80,7 @@
     $('div.loading-indicator').hide();
     $('#main').attr('data-currently-loading', 'no');
     $('.reload-waypoint').waypoint(function(event, direction) {
-      if (direction === 'down' && $('#main').attr('data-currently-loading') === 'no') {
+      if (direction === 'down' && $('#main').data('currently-loading') === 'no') {
         moarCardsPlz();
         $('#main .reload-waypoint').appendTo('#main');
         $.waypoints('refresh');
