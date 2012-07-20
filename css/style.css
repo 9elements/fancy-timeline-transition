@@ -83,15 +83,33 @@ header {
 }
 
 .share {
+  position: relative;
   padding: 25px 25px 5px 25px;
   margin: 0 auto;
   width: 820px;
+  height: 40px;
   text-align: center;
 }
 
-.facebook, .twitter {
+.share .facebook, .share .twittor, .share .google-plus {
+  position: absolute;
+  width: 130px;
+  height: 30px;
+  top: 30px;
   display: inline;
   padding: 0 10px;
+}
+
+.share .facebook {
+  left: 220px;
+}
+
+.share .twittor {
+  left: 380px;
+}
+
+.share .google-plus {
+  left: 520px;
 }
 
 h1 {
