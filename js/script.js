@@ -35,7 +35,7 @@
   var moarCardsPlz = function () {
     $('div.loading-indicator').show();
     $('#main').attr('data-currently-loading', 'yes');
-    $.getJSON('http://img.ly/images.json?sort=views&page='+page+'&callback=?', function(data){
+    $.getJSON('http://img.ly/beautiful.json?page='+page+'&callback=?', function(data){
       for (var index=0; index<data.length; index++){
         var item = data[index];
         var message = item.message ? item.message : '';
